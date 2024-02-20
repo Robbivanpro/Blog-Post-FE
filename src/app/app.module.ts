@@ -12,6 +12,7 @@ import { EditCategoryComponent } from './feature/category/category-list/edit-cat
 import { BlogpostListComponent } from './feature/category/blog-post/blogpost-list/blogpost-list.component';
 import { AddBlogpostComponent } from './feature/category/blog-post/add-blogpost/add-blogpost.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,7 @@ import { AddBlogpostComponent } from './feature/category/blog-post/add-blogpost/
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

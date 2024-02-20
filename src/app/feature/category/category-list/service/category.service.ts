@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { Category } from '../models/category.model';
 import { environment } from 'src/environments/environment';
 import { UpdateCategoryRequest } from '../models/edit-category.component';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +18,13 @@ export class CategoryService {
   addCategory(model: AddCategoryRequest):Observable<void>{
     return this.http.post<void>("https://localhost:44374/api/categories",model)
   }
-
-  getAllCategories(): Observable<Category[]>{
-
-    return this.http.get<Category[]>("https://localhost:44374/api/Categories");
+  getAllCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>("https://localhost:44374/api/Categories").pipe(
+      catchError(error => {
+        console.error('Error fetching categories:', error);
+        return throwError(() => error);
+      })
+    );
   }
 
   getCategoryByID(id: string): Observable<Category> {
